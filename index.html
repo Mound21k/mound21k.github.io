@@ -24,6 +24,20 @@
 
 <canvas id="starfield" aria-hidden="true"></canvas>
 <div class="sky-layer" aria-hidden="true"><span></span><span></span><span></span></div>
+
+<div class="hover-ship" aria-hidden="true">
+  <div class="hover-ship-bob">
+    <svg class="hover-ship-icon" viewBox="0 0 60 60" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round">
+      <ellipse class="flame" cx="30" cy="51" rx="3.2" ry="8" stroke="none"/>
+      <path d="M30 5c5.5 6.5 8.5 15.5 8.5 25.5 0 5-.75 9.75-2.25 14h-12.5c-1.5-4.25-2.25-9-2.25-14C21.5 20.5 24.5 11.5 30 5z"/>
+      <path d="M21.5 34 12.5 42.5l3-11"/>
+      <path d="M38.5 34 47.5 42.5l-3-11"/>
+      <path d="M25.75 44.5h8.5l-3 8a1.5 1.5 0 0 1-2.5 0z"/>
+      <circle cx="30" cy="23.25" r="3.25"/>
+    </svg>
+  </div>
+</div>
+
 <div id="warpFlash" aria-hidden="true"></div>
 
 <nav class="rail" id="rail" aria-label="Section navigation">
@@ -292,15 +306,43 @@
       <div class="eyebrow">systems // skills</div>
       <h2 class="section-title">Technical skills</h2>
 
-      <div class="json-block panel">
-        <div>{</div>
-        <div class="json-line"><span class="key">"deep_learning_generative"</span><span class="punc">:</span> <span class="val">["autoencoders", "VAEs", "ResMLP", "self/contrastive learning (CLIP, DINO, MoCo)", "CNNs", "RNNs"]</span><span class="punc">,</span></div>
-        <div class="json-line"><span class="key">"vision_multimodal"</span><span class="punc">:</span> <span class="val">["vision-language grounding (Grounding DINO)", "image captioning", "synthetic data (CARLA)"]</span><span class="punc">,</span></div>
-        <div class="json-line"><span class="key">"nlp_llms"</span><span class="punc">:</span> <span class="val">["transformers", "foundation models", "fine-tuning (T5)", "sequence modeling"]</span><span class="punc">,</span></div>
-        <div class="json-line"><span class="key">"programming"</span><span class="punc">:</span> <span class="val">["Python", "SQL", "Rust (basic)"]</span><span class="punc">,</span></div>
-        <div class="json-line"><span class="key">"frameworks"</span><span class="punc">:</span> <span class="val">["PyTorch", "TensorFlow", "Keras", "Hugging Face", "Ultralytics", "scikit-learn", "NumPy", "Pandas"]</span><span class="punc">,</span></div>
-        <div class="json-line"><span class="key">"tools"</span><span class="punc">:</span> <span class="val">["Git/GitHub", "Linux", "Docker", "Jupyter"]</span></div>
-        <div>}</div>
+      <div class="skills-block panel">
+        <div class="skill-row">
+          <div class="skill-key"><span class="q">"</span>deep_learning_generative<span class="q">"</span></div>
+          <div class="skill-chips">
+            <span>Autoencoders</span><span>VAEs</span><span>ResMLP</span><span>Self/contrastive learning (CLIP, DINO, MoCo)</span><span>CNNs</span><span>RNNs</span>
+          </div>
+        </div>
+        <div class="skill-row">
+          <div class="skill-key"><span class="q">"</span>vision_multimodal<span class="q">"</span></div>
+          <div class="skill-chips">
+            <span>Vision-language grounding (Grounding DINO)</span><span>Image captioning</span><span>Synthetic data (CARLA)</span>
+          </div>
+        </div>
+        <div class="skill-row">
+          <div class="skill-key"><span class="q">"</span>nlp_llms<span class="q">"</span></div>
+          <div class="skill-chips">
+            <span>Transformers</span><span>Foundation models</span><span>Fine-tuning (T5)</span><span>Sequence modeling</span>
+          </div>
+        </div>
+        <div class="skill-row">
+          <div class="skill-key"><span class="q">"</span>programming<span class="q">"</span></div>
+          <div class="skill-chips">
+            <span>Python</span><span>SQL</span><span>Rust (basic)</span>
+          </div>
+        </div>
+        <div class="skill-row">
+          <div class="skill-key"><span class="q">"</span>frameworks<span class="q">"</span></div>
+          <div class="skill-chips">
+            <span>PyTorch</span><span>TensorFlow</span><span>Keras</span><span>Hugging Face</span><span>Ultralytics</span><span>scikit-learn</span><span>NumPy</span><span>Pandas</span>
+          </div>
+        </div>
+        <div class="skill-row">
+          <div class="skill-key"><span class="q">"</span>tools<span class="q">"</span></div>
+          <div class="skill-chips">
+            <span>Git/GitHub</span><span>Linux</span><span>Docker</span><span>Jupyter</span>
+          </div>
+        </div>
       </div>
     </section>
 

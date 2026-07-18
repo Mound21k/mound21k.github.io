@@ -171,7 +171,7 @@ var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
 // scroll-reveal for panels and hero content
 // ==========================================================
 (function(){
-  var targets = document.querySelectorAll('.entry, .project-card, .contact-box, .json-block.panel, .csv-wrap.panel, .hero .eyebrow, .hero h1, .hero .role, .hero .console, .hero-actions, .eyebrow, h2.section-title, .pill-row');
+  var targets = document.querySelectorAll('.entry, .project-card, .contact-box, .skills-block.panel, .csv-wrap.panel, .hero .eyebrow, .hero h1, .hero .role, .hero .console, .hero-actions, .eyebrow, h2.section-title, .pill-row');
   if (reduceMotion || !('IntersectionObserver' in window)){
     return; // leave everything visible, no motion
   }
