@@ -1,6 +1,6 @@
 # shamsipoor.dev — portfolio site
 
-A single-page portfolio built with plain HTML, CSS, and JavaScript (no build step, no dependencies). Designed to look like an annotated source file — section headers are comments, facts are key/value pairs, skills are a JSON block — with a light/dark mode toggle.
+A single-page portfolio built with plain HTML, CSS, and JavaScript (no build step, no dependencies). "Flight Deck" concept: the page reads as a spacecraft's onboard mission computer. A trajectory rail on the left tracks your scroll position with a moving ship marker; the hero is a boot-sequence console; light mode is sky blue &amp; white (daytime launch), dark mode is black &amp; violet (deep space). Toggling themes triggers a short warp-flash transition.
 
 ## Files
 - `index.html` — all content and structure

@@ -6,7 +6,6 @@
 <title>MohammadHosein Shamsipoor — ML Researcher &amp; Engineer</title>
 <meta name="description" content="Portfolio of MohammadHosein Shamsipoor — multimodal representation learning, generative models, and computer vision.">
 
-<!-- Set theme before paint to avoid a flash of the wrong color scheme -->
 <script>
   (function(){
     var saved = localStorage.getItem('theme');
@@ -18,368 +17,350 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="style.css">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2220%22 fill=%22%23d97757%22/><text x=%2250%22 y=%2266%22 font-size=%2255%22 text-anchor=%22middle%22 fill=%22%2317110d%22 font-family=%22monospace%22>M</text></svg>">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2220%22 fill=%22%23a78bfa%22/><text x=%2250%22 y=%2266%22 font-size=%2255%22 text-anchor=%22middle%22 fill=%22%230c0714%22 font-family=%22monospace%22>M</text></svg>">
 </head>
 <body>
 <a class="skip-link" href="#about">skip to content</a>
 
+<canvas id="starfield" aria-hidden="true"></canvas>
+<div class="sky-layer" aria-hidden="true"><span></span><span></span><span></span></div>
+<div id="warpFlash" aria-hidden="true"></div>
+
+<nav class="rail" id="rail" aria-label="Section navigation">
+  <div class="rail-line"></div>
+  <div class="rail-ship" id="railShip" aria-hidden="true">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round">
+      <path d="M12 2c2.2 2.6 3.4 6.2 3.4 10.2 0 2-.3 3.9-.9 5.6h-5c-.6-1.7-.9-3.6-.9-5.6C8.6 8.2 9.8 4.6 12 2z"/>
+      <path d="M8.6 13.6 5 17l1.2-4.4"/>
+      <path d="M15.4 13.6 19 17l-1.2-4.4"/>
+      <path d="M10.3 17.8h3.4l-1.2 3.2a.6.6 0 0 1-1 0z"/>
+      <circle cx="12" cy="9.3" r="1.3"/>
+    </svg>
+  </div>
+  <!-- dots injected by script.js -->
+</nav>
+
 <header class="topbar">
-  <div class="topbar-left">
-    <button class="menu-btn" id="menuBtn" aria-label="Toggle navigation" aria-expanded="false">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
-    </button>
-    <div class="dots"><span></span><span></span><span></span></div>
-    <span class="tab-name"><span class="dirty">●</span>about.py — shamsipoor.dev</span>
+  <div class="brand">
+    <svg class="brand-ship" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"><path d="M12 2c2.2 2.6 3.4 6.2 3.4 10.2 0 2-.3 3.9-.9 5.6h-5c-.6-1.7-.9-3.6-.9-5.6C8.6 8.2 9.8 4.6 12 2z"/><path d="M8.6 13.6 5 17l1.2-4.4"/><path d="M15.4 13.6 19 17l-1.2-4.4"/><circle cx="12" cy="9.3" r="1.3"/></svg>
+    <span class="brand-text">M. Shamsipoor — Flight Deck</span>
+    <span class="mission-clock" id="missionClock">T+00:00:00</span>
   </div>
-  <div class="topbar-right">
-    <button class="theme-toggle" id="themeToggle" aria-label="Toggle light and dark mode">
-      <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
-      <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
-    </button>
-  </div>
+  <button class="theme-toggle" id="themeToggle" aria-label="Toggle light and dark mode">
+    <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+    <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+  </button>
 </header>
 
-<div class="backdrop" id="backdrop"></div>
+<main id="main">
+  <div class="container">
 
-<div class="layout">
-  <nav class="sidebar" id="sidebar" aria-label="Section navigation">
-    <div>
-      <div class="tree-label">~/portfolio</div>
-      <ul>
-        <li><a class="nav-link" href="#about"><span class="nav-dot"></span>about.py</a></li>
-        <li><a class="nav-link" href="#education"><span class="nav-dot"></span>education.yaml</a></li>
-        <li><a class="nav-link" href="#research"><span class="nav-dot"></span>research.md</a></li>
-        <li><a class="nav-link" href="#projects"><span class="nav-dot"></span>projects.json</a></li>
-        <li><a class="nav-link" href="#industry"><span class="nav-dot"></span>industry.log</a></li>
-        <li><a class="nav-link" href="#teaching"><span class="nav-dot"></span>teaching.md</a></li>
-        <li><a class="nav-link" href="#skills"><span class="nav-dot"></span>skills.json</a></li>
-        <li><a class="nav-link" href="#coursework"><span class="nav-dot"></span>coursework.csv</a></li>
-        <li><a class="nav-link" href="#contact"><span class="nav-dot"></span>contact.sh</a></li>
-      </ul>
-    </div>
-    <div class="sidebar-footer">
-      <div class="tree-label" style="padding-left:0;">connect</div>
-      <div class="social-row">
-        <a href="https://github.com/mound21k" target="_blank" rel="noopener" aria-label="GitHub">
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.57.1.78-.25.78-.55 0-.27-.01-1.16-.02-2.11-3.2.7-3.88-1.36-3.88-1.36-.52-1.34-1.28-1.69-1.28-1.69-1.04-.72.08-.7.08-.7 1.15.08 1.76 1.19 1.76 1.19 1.03 1.76 2.69 1.25 3.35.96.1-.75.4-1.25.73-1.54-2.55-.29-5.24-1.28-5.24-5.7 0-1.26.45-2.29 1.19-3.09-.12-.29-.52-1.47.11-3.06 0 0 .97-.31 3.18 1.18a11 11 0 0 1 5.79 0c2.2-1.49 3.17-1.18 3.17-1.18.64 1.59.24 2.77.12 3.06.74.8 1.18 1.83 1.18 3.09 0 4.43-2.69 5.4-5.25 5.69.41.36.78 1.08.78 2.17 0 1.57-.01 2.83-.01 3.22 0 .3.2.66.79.55A10.53 10.53 0 0 0 23.5 12c0-6.35-5.15-11.5-11.5-11.5z"/></svg>
-        </a>
-        <a href="https://linkedin.com/in/mohammad-hossein-shamsipoor-791230274" target="_blank" rel="noopener" aria-label="LinkedIn">
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.03-1.85-3.03-1.86 0-2.14 1.45-2.14 2.94v5.66H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.38-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.07 2.07 0 1 1 0-4.13 2.07 2.07 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45z"/></svg>
-        </a>
-        <a href="mailto:mohammadhossein.shamsipoor@gmail.com" aria-label="Email">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 6 10-6"/></svg>
-        </a>
+    <!-- ABOUT -->
+    <section id="about" class="hero">
+      <div class="eyebrow">flight deck // crew profile</div>
+      <h1>MohammadHosein Shamsipoor</h1>
+      <p class="role">ML researcher &amp; engineer working on multimodal representation learning, generative models, and how to compress what neural networks learn without losing what makes it useful. Based in Kerman, Iran.</p>
+
+      <div class="console">
+        <div class="console-inner">
+          <div class="console-head">
+            <span>ONBOARD COMPUTER — about.sys</span>
+            <span class="blip"></span>
+          </div>
+          <div class="console-body" id="consoleBody"></div>
+        </div>
       </div>
-    </div>
-  </nav>
 
-  <main id="main">
-    <div class="container">
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="#projects">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2c2.2 2.6 3.4 6.2 3.4 10.2 0 2-.3 3.9-.9 5.6h-5c-.6-1.7-.9-3.6-.9-5.6C8.6 8.2 9.8 4.6 12 2z"/></svg>
+          View projects
+        </a>
+        <a class="btn btn-ghost" href="assets/MohammadHosein_Shamsipoor_CV.pdf" target="_blank" rel="noopener">Download flight record ↓</a>
+        <a class="btn btn-ghost" href="#contact">Open comms</a>
+      </div>
+    </section>
 
-      <!-- ABOUT / HERO -->
-      <section id="about" class="hero">
-        <div class="hero-kicker mono"># about.py</div>
-        <h1>MohammadHosein Shamsipoor</h1>
-        <p class="role">ML researcher &amp; engineer working on multimodal representation learning, generative models, and how to compress what neural networks learn without losing what makes it useful. Based in Kerman, Iran.</p>
+    <!-- EDUCATION -->
+    <section id="education">
+      <div class="eyebrow">navigation log // education</div>
+      <h2 class="section-title">Education</h2>
 
-        <div class="terminal" role="img" aria-label="Terminal window showing a summary of MohammadHosein's research focus, in the style of a Python REPL session.">
-          <div class="terminal-head">
-            <div class="dots"><span></span><span></span><span></span></div>
-            <span>python3 — about.py</span>
+      <div class="entry panel">
+        <div class="entry-top">
+          <div>
+            <div class="entry-title">B.Sc. in Computer Engineering</div>
+            <div class="entry-org">Shahid Bahonar University of Kerman — Kerman, Iran</div>
           </div>
-          <div class="terminal-body mono" id="terminalBody"></div>
+          <div class="entry-date">2020 – 2025</div>
         </div>
+        <ul>
+          <li>Cumulative GPA: <strong>14.94 / 20</strong>; AI/ML &amp; core-CS coursework average: <strong>~17.0 / 20</strong>.</li>
+          <li>B.Sc. Thesis: <em>Data-driven estimation of intrinsic dimensionality for autoencoder architecture design</em> — Advisor: Dr. Mahdi Eftekhari.</li>
+        </ul>
+      </div>
+    </section>
 
-        <div class="hero-actions">
-          <a class="btn btn-primary" href="#projects">View projects</a>
-          <a class="btn btn-ghost" href="assets/MohammadHosein_Shamsipoor_CV.pdf" target="_blank" rel="noopener">Download CV ↓</a>
-          <a class="btn btn-ghost" href="#contact">Get in touch</a>
+    <!-- RESEARCH -->
+    <section id="research">
+      <div class="eyebrow">mission log // research</div>
+      <h2 class="section-title">Research experience</h2>
+
+      <div class="entry panel">
+        <div class="entry-top">
+          <div>
+            <div class="entry-title">Independent Research — Autoencoder Compression &amp; Intrinsic Dimensionality</div>
+            <div class="entry-org">Self-directed continuation of B.Sc. thesis work</div>
+          </div>
+          <div class="entry-date">Jun 2026 – present</div>
         </div>
-      </section>
+        <ul>
+          <li>Revisiting and extending earlier work on using unsupervised estimates of a dataset's intrinsic dimensionality to size autoencoder bottlenecks and architectures under a target reconstruction-loss threshold.</li>
+          <li>Implementing and comparing CNN-autoencoders, MLP-autoencoders, VAEs, and ResMLP models on MNIST, FashionMNIST, and CIFAR-10 in PyTorch. Writeup in preparation.</li>
+        </ul>
+      </div>
 
-      <!-- EDUCATION -->
-      <section id="education">
-        <div class="comment"><span class="hash">#</span> education.yaml</div>
-        <h2 class="section-title"><span class="kw">const</span> education</h2>
+      <div class="entry panel">
+        <div class="entry-top">
+          <div>
+            <div class="entry-title">Research Assistant — Machine Learning Group</div>
+            <div class="entry-org">Shahid Bahonar University of Kerman · Advisor: Dr. Mahdi Eftekhari</div>
+          </div>
+          <div class="entry-date">Aug 2024 – Sep 2025</div>
+        </div>
+        <ul>
+          <li>Investigated unsupervised representation-learning methods — autoencoders, non-negative matrix factorization, basis-driven analysis — to estimate intrinsic dimensionality and inform compact autoencoder design.</li>
+          <li>Designed and implemented enhanced autoencoder architectures in PyTorch for representation learning and dimensionality reduction; this work formed the basis of my B.Sc. thesis and an associated manuscript now being revised independently.</li>
+        </ul>
+      </div>
+    </section>
 
-        <div class="entry">
-          <div class="entry-top">
+    <!-- PROJECTS -->
+    <section id="projects">
+      <div class="eyebrow">cargo manifest // projects</div>
+      <h2 class="section-title">Projects</h2>
+
+      <div class="project-grid">
+
+        <div class="project-card panel">
+          <div class="project-card-top">
             <div>
-              <div class="entry-title">B.Sc. in Computer Engineering</div>
-              <div class="entry-org">Shahid Bahonar University of Kerman — Kerman, Iran</div>
+              <div class="project-title">Multi-Condition Synthetic Driving Dataset for Instance Segmentation</div>
+              <div class="project-sub">CARLA + GroundedSAM annotation pipeline · May – Jun 2025</div>
             </div>
-            <div class="entry-date">Sep 2020 – Sep 2025</div>
+            <span class="project-tag">collaborative</span>
           </div>
           <ul>
-            <li>Cumulative GPA: <strong>14.94 / 20</strong>; AI/ML &amp; core-CS coursework average: <strong>~17.0 / 20</strong>.</li>
-            <li>B.Sc. Thesis: <em>Data-driven estimation of intrinsic dimensionality for autoencoder architecture design</em> — Advisor: Dr. Mahdi Eftekhari.</li>
+            <li>Designed and built the full dataset: scripted four environmental conditions (day, night, rain, fog) in the CARLA simulator, synchronizing a dual-camera RGB + instance-segmentation rig at 20 FPS and converting raw contours into YOLO-format polygons — 3,704 frame pairs covering vehicles, pedestrians, buses, and traffic lights (~10.2K / 1.9K / 2.2K instances).</li>
+            <li>Built a GroundedSAM-based auto-labeling pipeline (grounded-language prompts → SAM masks) to refine annotations where the simulator's native ground truth fell short, plus position-based train/test splitting for true spatial generalization and an Albumentations augmentation stage.</li>
+            <li>Delivered the dataset to a collaborator who trained YOLOv11n-seg and YOLOv11m-seg and compiled the nano model to a TensorRT (FP16) engine, cutting inference latency ~4.1× (11.87ms → 2.89ms; 84 → 346 FPS).</li>
           </ul>
+          <a class="project-link" href="https://github.com/Mound21k/yolov11-carla-segmentation" target="_blank" rel="noopener">
+            github.com/Mound21k/yolov11-carla-segmentation
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17 17 7M7 7h10v10"/></svg>
+          </a>
         </div>
-      </section>
 
-      <!-- RESEARCH EXPERIENCE -->
-      <section id="research">
-        <div class="comment"><span class="hash">#</span> research.md</div>
-        <h2 class="section-title"><span class="kw">def</span> research_experience()</h2>
-
-        <div class="entry">
-          <div class="entry-top">
+        <div class="project-card panel">
+          <div class="project-card-top">
             <div>
-              <div class="entry-title">Independent Research — Autoencoder Compression &amp; Intrinsic Dimensionality</div>
-              <div class="entry-org">Self-directed continuation of B.Sc. thesis work</div>
+              <div class="project-title">Multi-View Attention for Steering-Angle Prediction</div>
+              <div class="project-sub">ResMLP backbone + multi-camera attention · Jul – Aug 2025</div>
             </div>
-            <div class="entry-date">Jun 2026 – present</div>
+            <span class="project-tag">collaborative</span>
           </div>
           <ul>
-            <li>Revisiting and extending earlier work on using unsupervised estimates of a dataset's intrinsic dimensionality to size autoencoder bottlenecks and architectures under a target reconstruction-loss threshold.</li>
-            <li>Implementing and comparing CNN-autoencoders, MLP-autoencoders, VAEs, and ResMLP models on MNIST, FashionMNIST, and CIFAR-10 in PyTorch. Writeup in preparation.</li>
+            <li>Proposed the approach and implemented the core model — a fusion of a ResMLP backbone with a multi-view attention mechanism over center/left/right camera views — together with the data-processing and training pipeline.</li>
+            <li>Project also included a detailed evaluation suite (directional/angular metrics, attention-entropy and cross-view analysis, bootstrap significance testing), built by a collaborator.</li>
           </ul>
+          <a class="project-link" href="https://github.com/Mound21k/MVAM-Steering-Angle" target="_blank" rel="noopener">
+            github.com/Mound21k/MVAM-Steering-Angle
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17 17 7M7 7h10v10"/></svg>
+          </a>
         </div>
 
-        <div class="entry">
-          <div class="entry-top">
+        <div class="project-card panel">
+          <div class="project-card-top">
             <div>
-              <div class="entry-title">Research Assistant — Machine Learning Group</div>
-              <div class="entry-org">Shahid Bahonar University of Kerman · Advisor: Dr. Mahdi Eftekhari</div>
+              <div class="project-title">Image Captioning — Show and Tell</div>
+              <div class="project-sub">PyTorch · CNN-encoder / LSTM-decoder</div>
             </div>
-            <div class="entry-date">Aug 2024 – Sep 2025</div>
+            <span class="project-tag">solo</span>
           </div>
           <ul>
-            <li>Investigated unsupervised representation-learning methods — autoencoders, non-negative matrix factorization, basis-driven analysis — to estimate intrinsic dimensionality and inform compact autoencoder design.</li>
-            <li>Designed and implemented enhanced autoencoder architectures in PyTorch for representation learning and dimensionality reduction; this work formed the basis of my B.Sc. thesis and an associated manuscript now being revised independently.</li>
+            <li>Implemented a CNN-encoder / LSTM-decoder captioning model reproducing <em>Show and Tell</em> (Vinyals et al.).</li>
           </ul>
+          <a class="project-link" href="https://github.com/Mound21k/image-captioning" target="_blank" rel="noopener">
+            github.com/Mound21k/image-captioning
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17 17 7M7 7h10v10"/></svg>
+          </a>
         </div>
-      </section>
 
-      <!-- PROJECTS -->
-      <section id="projects">
-        <div class="comment"><span class="hash">#</span> projects.json</div>
-        <h2 class="section-title"><span class="kw">list</span>[Project]</h2>
-
-        <div class="project-grid">
-
-          <div class="project-card">
-            <div class="project-card-top">
-              <div>
-                <div class="project-title">Multi-Condition Synthetic Driving Dataset for Instance Segmentation</div>
-                <div class="project-sub">CARLA + GroundedSAM annotation pipeline · May – Jun 2025</div>
-              </div>
-              <span class="project-tag">collaborative</span>
-            </div>
-            <ul>
-              <li>Designed and built the full dataset: scripted four environmental conditions (day, night, rain, fog) in the CARLA simulator, synchronizing a dual-camera RGB + instance-segmentation rig at 20 FPS and converting raw contours into YOLO-format polygons — 3,704 frame pairs covering vehicles, pedestrians, buses, and traffic lights (~10.2K / 1.9K / 2.2K instances).</li>
-              <li>Built a GroundedSAM-based auto-labeling pipeline (grounded-language prompts → SAM masks) to refine annotations where the simulator's native ground truth fell short, plus position-based train/test splitting for true spatial generalization and an Albumentations augmentation stage.</li>
-              <li>Delivered the dataset to a collaborator who trained YOLOv11n-seg and YOLOv11m-seg and compiled the nano model to a TensorRT (FP16) engine, cutting inference latency ~4.1× (11.87ms → 2.89ms; 84 → 346 FPS).</li>
-            </ul>
-            <a class="project-link" href="https://github.com/Mound21k/yolov11-carla-segmentation" target="_blank" rel="noopener">
-              github.com/Mound21k/yolov11-carla-segmentation
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17 17 7M7 7h10v10"/></svg>
-            </a>
-          </div>
-
-          <div class="project-card">
-            <div class="project-card-top">
-              <div>
-                <div class="project-title">Multi-View Attention for Steering-Angle Prediction</div>
-                <div class="project-sub">ResMLP backbone + multi-camera attention · Jul – Aug 2025</div>
-              </div>
-              <span class="project-tag">collaborative</span>
-            </div>
-            <ul>
-              <li>Proposed the approach and implemented the core model — a fusion of a ResMLP backbone with a multi-view attention mechanism over center/left/right camera views — together with the data-processing and training pipeline.</li>
-              <li>Project also included a detailed evaluation suite (directional/angular metrics, attention-entropy and cross-view analysis, bootstrap significance testing), built by a collaborator.</li>
-            </ul>
-            <a class="project-link" href="https://github.com/Mound21k/MVAM-Steering-Angle" target="_blank" rel="noopener">
-              github.com/Mound21k/MVAM-Steering-Angle
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17 17 7M7 7h10v10"/></svg>
-            </a>
-          </div>
-
-          <div class="project-card">
-            <div class="project-card-top">
-              <div>
-                <div class="project-title">Image Captioning — Show and Tell</div>
-                <div class="project-sub">PyTorch · CNN-encoder / LSTM-decoder</div>
-              </div>
-              <span class="project-tag">solo</span>
-            </div>
-            <ul>
-              <li>Implemented a CNN-encoder / LSTM-decoder captioning model reproducing <em>Show and Tell</em> (Vinyals et al.).</li>
-            </ul>
-            <a class="project-link" href="https://github.com/Mound21k/image-captioning" target="_blank" rel="noopener">
-              github.com/Mound21k/image-captioning
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17 17 7M7 7h10v10"/></svg>
-            </a>
-          </div>
-
-          <div class="project-card">
-            <div class="project-card-top">
-              <div>
-                <div class="project-title">Transfer-Learning Pipeline</div>
-                <div class="project-sub">CNN pretraining + fine-tuning</div>
-              </div>
-              <span class="project-tag">solo</span>
-            </div>
-            <ul>
-              <li>Pretrained a CNN on a 27k-image ImageNet subset and fine-tuned it on CIFAR-100.</li>
-            </ul>
-          </div>
-
-        </div>
-      </section>
-
-      <!-- INDUSTRY EXPERIENCE -->
-      <section id="industry">
-        <div class="comment"><span class="hash">#</span> industry.log</div>
-        <h2 class="section-title"><span class="kw">def</span> industry_experience()</h2>
-
-        <div class="entry">
-          <div class="entry-top">
+        <div class="project-card panel">
+          <div class="project-card-top">
             <div>
-              <div class="entry-title">Machine Learning Engineer</div>
-              <div class="entry-org">Fusion Food Tech / Artechly</div>
+              <div class="project-title">Transfer-Learning Pipeline</div>
+              <div class="project-sub">CNN pretraining + fine-tuning</div>
             </div>
-            <div class="entry-date">Dec 2025 – May 2026</div>
+            <span class="project-tag">solo</span>
           </div>
           <ul>
-            <li>Built an AI voice agent for end-to-end order collection; designed order-extraction, verification, and secure automated-payment pipelines.</li>
+            <li>Pretrained a CNN on a 27k-image ImageNet subset and fine-tuned it on CIFAR-100.</li>
           </ul>
         </div>
 
-        <div class="entry">
-          <div class="entry-top">
-            <div>
-              <div class="entry-title">NLP &amp; AI Engineer</div>
-              <div class="entry-org">AARTAA</div>
-            </div>
-            <div class="entry-date">Jun 2025 – Sep 2025</div>
+      </div>
+    </section>
+
+    <!-- INDUSTRY -->
+    <section id="industry">
+      <div class="eyebrow">flight record // industry</div>
+      <h2 class="section-title">Industry experience</h2>
+
+      <div class="entry panel">
+        <div class="entry-top">
+          <div>
+            <div class="entry-title">Machine Learning Engineer</div>
+            <div class="entry-org">Fusion Food Tech / Artechly</div>
           </div>
-          <ul>
-            <li>Developed transformer-based NLP services (FastAPI, WebSocket); deployed models to production with OAuth 2.0 authentication.</li>
-          </ul>
+          <div class="entry-date">Dec 2025 – May 2026</div>
         </div>
+        <ul>
+          <li>Built an AI voice agent for end-to-end order collection; designed order-extraction, verification, and secure automated-payment pipelines.</li>
+        </ul>
+      </div>
 
-        <div class="entry">
-          <div class="entry-top">
-            <div>
-              <div class="entry-title">Machine Learning Engineer</div>
-              <div class="entry-org">Ava Pardaz Keyhan Kariman</div>
-            </div>
-            <div class="entry-date">Feb 2024 – Jul 2024</div>
+      <div class="entry panel">
+        <div class="entry-top">
+          <div>
+            <div class="entry-title">NLP &amp; AI Engineer</div>
+            <div class="entry-org">AARTAA</div>
           </div>
-          <ul>
-            <li>Fine-tuned T5 models for NER and keyword extraction; built a RAG chatbot and end-to-end NLP retrieval pipelines.</li>
-          </ul>
+          <div class="entry-date">Jun 2025 – Sep 2025</div>
         </div>
-      </section>
+        <ul>
+          <li>Developed transformer-based NLP services (FastAPI, WebSocket); deployed models to production with OAuth 2.0 authentication.</li>
+        </ul>
+      </div>
 
-      <!-- TEACHING -->
-      <section id="teaching">
-        <div class="comment"><span class="hash">#</span> teaching.md</div>
-        <h2 class="section-title"><span class="kw">def</span> teaching_experience()</h2>
-
-        <div class="entry">
-          <div class="entry-top">
-            <div>
-              <div class="entry-title">Sole Teaching Assistant — Graduate Deep Learning Course</div>
-              <div class="entry-org">Shahid Bahonar University of Kerman · as an undergraduate, under Dr. Mahdi Eftekhari</div>
-            </div>
-            <div class="entry-date">Feb 2025 – Sep 2025</div>
+      <div class="entry panel">
+        <div class="entry-top">
+          <div>
+            <div class="entry-title">Machine Learning Engineer</div>
+            <div class="entry-org">Ava Pardaz Keyhan Kariman</div>
           </div>
-          <ul>
-            <li>Single-handedly designed the full assignment set for a master's-level deep-learning course: an image-captioning project (<em>Show and Tell</em>) and a transfer-learning project (ImageNet-subset pretraining → CIFAR fine-tuning).</li>
-            <li>Taught self-supervised and vision-language papers (CLIP, DINO, MoCo) and mentored graduate students on neural-network implementations.</li>
-          </ul>
+          <div class="entry-date">Feb 2024 – Jul 2024</div>
         </div>
+        <ul>
+          <li>Fine-tuned T5 models for NER and keyword extraction; built a RAG chatbot and end-to-end NLP retrieval pipelines.</li>
+        </ul>
+      </div>
+    </section>
 
-        <div class="entry">
-          <div class="entry-top">
-            <div>
-              <div class="entry-title">Head TA — Artificial Intelligence</div>
-            </div>
-            <div class="entry-date">Sep 2023 – Jan 2024</div>
+    <!-- TEACHING -->
+    <section id="teaching">
+      <div class="eyebrow">training log // teaching</div>
+      <h2 class="section-title">Teaching experience</h2>
+
+      <div class="entry panel">
+        <div class="entry-top">
+          <div>
+            <div class="entry-title">Sole Teaching Assistant — Graduate Deep Learning Course</div>
+            <div class="entry-org">Shahid Bahonar University of Kerman · as an undergraduate, under Dr. Mahdi Eftekhari</div>
           </div>
-          <ul>
-            <li>Led the TA team and designed a capstone multi-agent project — reflex, model-based, and goal-based agents competing in a resource-collection grid-world.</li>
-          </ul>
+          <div class="entry-date">Feb 2025 – Sep 2025</div>
         </div>
-      </section>
+        <ul>
+          <li>Single-handedly designed the full assignment set for a master's-level deep-learning course: an image-captioning project (<em>Show and Tell</em>) and a transfer-learning project (ImageNet-subset pretraining → CIFAR fine-tuning).</li>
+          <li>Taught self-supervised and vision-language papers (CLIP, DINO, MoCo) and mentored graduate students on neural-network implementations.</li>
+        </ul>
+      </div>
 
-      <!-- SKILLS -->
-      <section id="skills">
-        <div class="comment"><span class="hash">#</span> skills.json</div>
-        <h2 class="section-title"><span class="kw">const</span> skills</h2>
-
-        <div class="json-block">
-          <div>{</div>
-          <div class="json-line"><span class="key">"deep_learning_generative"</span><span class="punc">:</span> <span class="val">["autoencoders", "VAEs", "ResMLP", "self/contrastive learning (CLIP, DINO, MoCo)", "CNNs", "RNNs"]</span><span class="punc">,</span></div>
-          <div class="json-line"><span class="key">"vision_multimodal"</span><span class="punc">:</span> <span class="val">["vision-language grounding (Grounding DINO)", "image captioning", "synthetic data (CARLA)"]</span><span class="punc">,</span></div>
-          <div class="json-line"><span class="key">"nlp_llms"</span><span class="punc">:</span> <span class="val">["transformers", "foundation models", "fine-tuning (T5)", "sequence modeling"]</span><span class="punc">,</span></div>
-          <div class="json-line"><span class="key">"programming"</span><span class="punc">:</span> <span class="val">["Python", "SQL", "Rust (basic)"]</span><span class="punc">,</span></div>
-          <div class="json-line"><span class="key">"frameworks"</span><span class="punc">:</span> <span class="val">["PyTorch", "TensorFlow", "Keras", "Hugging Face", "Ultralytics", "scikit-learn", "NumPy", "Pandas"]</span><span class="punc">,</span></div>
-          <div class="json-line"><span class="key">"tools"</span><span class="punc">:</span> <span class="val">["Git/GitHub", "Linux", "Docker", "Jupyter"]</span></div>
-          <div>}</div>
+      <div class="entry panel">
+        <div class="entry-top">
+          <div class="entry-title">Head TA — Artificial Intelligence</div>
+          <div class="entry-date">Sep 2023 – Jan 2024</div>
         </div>
-      </section>
+        <ul>
+          <li>Led the TA team and designed a capstone multi-agent project — reflex, model-based, and goal-based agents competing in a resource-collection grid-world.</li>
+        </ul>
+      </div>
+    </section>
 
-      <!-- COURSEWORK -->
-      <section id="coursework">
-        <div class="comment"><span class="hash">#</span> coursework.csv</div>
-        <h2 class="section-title"><span class="kw">table</span> selected_coursework</h2>
+    <!-- SKILLS -->
+    <section id="skills">
+      <div class="eyebrow">systems // skills</div>
+      <h2 class="section-title">Technical skills</h2>
 
-        <div class="csv-wrap">
-          <table class="csv">
-            <thead>
-              <tr><th>course</th><th>grade&nbsp;/&nbsp;20</th></tr>
-            </thead>
-            <tbody>
-              <tr><td>Fundamentals of Computational Intelligence</td><td class="grade">20.0</td></tr>
-              <tr><td>Basics of Speech &amp; Language Processing</td><td class="grade">17.58</td></tr>
-              <tr><td>Fundamentals of Data Mining</td><td class="grade">17.75</td></tr>
-              <tr><td>Computer Vision Basics</td><td class="grade">16.75</td></tr>
-              <tr><td>Special Topics in AI</td><td class="grade">16.5</td></tr>
-              <tr><td>Machine Learning</td><td class="grade">16.0</td></tr>
-              <tr><td>AI &amp; Expert Systems</td><td class="grade">16.2</td></tr>
-              <tr><td>Engineering Probability &amp; Statistics</td><td class="grade">16.5</td></tr>
-              <tr><td>Design of Algorithms</td><td class="grade">16.5</td></tr>
-            </tbody>
-          </table>
+      <div class="json-block panel">
+        <div>{</div>
+        <div class="json-line"><span class="key">"deep_learning_generative"</span><span class="punc">:</span> <span class="val">["autoencoders", "VAEs", "ResMLP", "self/contrastive learning (CLIP, DINO, MoCo)", "CNNs", "RNNs"]</span><span class="punc">,</span></div>
+        <div class="json-line"><span class="key">"vision_multimodal"</span><span class="punc">:</span> <span class="val">["vision-language grounding (Grounding DINO)", "image captioning", "synthetic data (CARLA)"]</span><span class="punc">,</span></div>
+        <div class="json-line"><span class="key">"nlp_llms"</span><span class="punc">:</span> <span class="val">["transformers", "foundation models", "fine-tuning (T5)", "sequence modeling"]</span><span class="punc">,</span></div>
+        <div class="json-line"><span class="key">"programming"</span><span class="punc">:</span> <span class="val">["Python", "SQL", "Rust (basic)"]</span><span class="punc">,</span></div>
+        <div class="json-line"><span class="key">"frameworks"</span><span class="punc">:</span> <span class="val">["PyTorch", "TensorFlow", "Keras", "Hugging Face", "Ultralytics", "scikit-learn", "NumPy", "Pandas"]</span><span class="punc">,</span></div>
+        <div class="json-line"><span class="key">"tools"</span><span class="punc">:</span> <span class="val">["Git/GitHub", "Linux", "Docker", "Jupyter"]</span></div>
+        <div>}</div>
+      </div>
+    </section>
+
+    <!-- COURSEWORK -->
+    <section id="coursework">
+      <div class="eyebrow">coordinates // coursework</div>
+      <h2 class="section-title">Selected coursework</h2>
+
+      <div class="csv-wrap panel">
+        <table class="csv">
+          <thead>
+            <tr><th>course</th><th>grade&nbsp;/&nbsp;20</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Fundamentals of Computational Intelligence</td><td class="grade">20.0</td></tr>
+            <tr><td>Basics of Speech &amp; Language Processing</td><td class="grade">17.58</td></tr>
+            <tr><td>Fundamentals of Data Mining</td><td class="grade">17.75</td></tr>
+            <tr><td>Computer Vision Basics</td><td class="grade">16.75</td></tr>
+            <tr><td>Special Topics in AI</td><td class="grade">16.5</td></tr>
+            <tr><td>Machine Learning</td><td class="grade">16.0</td></tr>
+            <tr><td>AI &amp; Expert Systems</td><td class="grade">16.2</td></tr>
+            <tr><td>Engineering Probability &amp; Statistics</td><td class="grade">16.5</td></tr>
+            <tr><td>Design of Algorithms</td><td class="grade">16.5</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div style="margin-top:28px;">
+        <div class="eyebrow">certifications &amp; languages</div>
+        <div class="pill-row">
+          <span class="pill panel"><span class="dot">▸</span>Machine Learning Specialization — Coursera</span>
+          <span class="pill panel"><span class="dot">▸</span>NLP Specialization — Coursera</span>
+          <span class="pill panel"><span class="dot">▸</span>PyTorch for Deep Learning — ZTM</span>
+          <span class="pill panel"><span class="dot">▸</span>Persian — native</span>
+          <span class="pill panel"><span class="dot">▸</span>English — TOEFL iBT 100/120 (C1)</span>
         </div>
+      </div>
+    </section>
 
-        <div style="margin-top:26px;">
-          <div class="comment" style="margin-bottom:12px;"><span class="hash">#</span> certifications &amp; languages</div>
-          <div class="pill-row">
-            <span class="pill"><span class="dot">▸</span>Machine Learning Specialization — Coursera</span>
-            <span class="pill"><span class="dot">▸</span>NLP Specialization — Coursera</span>
-            <span class="pill"><span class="dot">▸</span>PyTorch for Deep Learning — ZTM</span>
-            <span class="pill"><span class="dot">▸</span>Persian — native</span>
-            <span class="pill"><span class="dot">▸</span>English — TOEFL iBT 100/120 (C1)</span>
-          </div>
+    <!-- CONTACT -->
+    <section id="contact">
+      <div class="eyebrow">comms // contact</div>
+      <h2 class="section-title">Get in touch</h2>
+
+      <div class="contact-box panel">
+        <p>Open to research collaborations, MSc opportunities, and roles in multimodal learning and computer vision. The fastest way to reach me is email.</p>
+        <div class="contact-links">
+          <a class="btn btn-primary" href="mailto:mohammadhossein.shamsipoor@gmail.com">mohammadhossein.shamsipoor@gmail.com</a>
+          <a class="btn btn-ghost" href="https://github.com/mound21k" target="_blank" rel="noopener">GitHub ↗</a>
+          <a class="btn btn-ghost" href="https://linkedin.com/in/mohammad-hossein-shamsipoor-791230274" target="_blank" rel="noopener">LinkedIn ↗</a>
         </div>
-      </section>
+      </div>
+    </section>
 
-      <!-- CONTACT -->
-      <section id="contact">
-        <div class="comment"><span class="hash">#</span> contact.sh</div>
-        <h2 class="section-title"><span class="kw">$</span> reach_out --to shamsipoor</h2>
+  </div>
 
-        <div class="contact-box">
-          <p>Open to research collaborations, MSc opportunities, and roles in multimodal learning and computer vision. The fastest way to reach me is email.</p>
-          <div class="contact-links">
-            <a class="btn btn-primary" href="mailto:mohammadhossein.shamsipoor@gmail.com">mohammadhossein.shamsipoor@gmail.com</a>
-            <a class="btn btn-ghost" href="https://github.com/mound21k" target="_blank" rel="noopener">GitHub ↗</a>
-            <a class="btn btn-ghost" href="https://linkedin.com/in/mohammad-hossein-shamsipoor-791230274" target="_blank" rel="noopener">LinkedIn ↗</a>
-          </div>
-        </div>
-      </section>
-
-    </div>
-
-    <footer>
-      © <span id="year"></span> MohammadHosein Shamsipoor · built with HTML, CSS &amp; JS · hosted on GitHub Pages
-    </footer>
-  </main>
-</div>
+  <footer>
+    © <span id="year"></span> MohammadHosein Shamsipoor · built with HTML, CSS &amp; JS · hosted on GitHub Pages
+  </footer>
+</main>
 
 <script src="script.js"></script>
 </body>
