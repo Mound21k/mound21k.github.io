@@ -5,8 +5,6 @@
    a ship marker that tracks scroll position in real time.
    ========================================================== */
 
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Sora:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap');
-
 :root{
   --font-display: 'Space Grotesk', ui-sans-serif, sans-serif;
   --font-body: 'Sora', system-ui, -apple-system, sans-serif;
@@ -58,7 +56,7 @@
 }
 
 *,*::before,*::after{ box-sizing: border-box; }
-html{ scroll-behavior: smooth; overflow-x: hidden; }
+html{ scroll-behavior: smooth; overflow-x: clip; }
 @media (prefers-reduced-motion: reduce){
   html{ scroll-behavior: auto; }
   *,*::before,*::after{ animation-duration: .001ms !important; animation-iteration-count: 1 !important; transition-duration: .001ms !important; scroll-behavior: auto !important; }
@@ -74,7 +72,7 @@ body{
   transition: background var(--ease-slow), color var(--ease);
   -webkit-font-smoothing: antialiased;
   position: relative;
-  overflow-x: hidden;
+  overflow-x: clip;
 }
 
 a{ color: inherit; text-decoration: none; }
@@ -97,10 +95,9 @@ a:focus-visible, button:focus-visible{
 /* ---------------- ambient backgrounds ---------------- */
 #starfield{
   position: fixed; inset:0; z-index:-2; width:100%; height:100%;
-  display:none;
+  display:block;
   transition: opacity var(--ease-slow);
 }
-[data-theme="dark"] #starfield{ display:block; }
 
 .sky-layer{
   position: fixed; inset:0; z-index:-2; overflow:hidden; display:none;
@@ -117,29 +114,6 @@ a:focus-visible, button:focus-visible{
 @keyframes drift{
   0%,100%{ transform: translate(0,0); }
   50%{ transform: translate(40px,30px); }
-}
-
-/* ---------------- saturn (light theme only) ---------------- */
-.saturn{
-  position: fixed; top:12%; right:9%; z-index:-1; pointer-events:none;
-  width:130px; height:130px; display:none;
-  color: var(--accent);
-  opacity:.6;
-  filter: drop-shadow(0 0 16px var(--glow));
-  animation: saturnDrift 60s ease-in-out infinite;
-}
-[data-theme="light"] .saturn{ display:block; }
-.saturn-icon{ display:block; width:100%; height:100%; }
-.saturn-ring path{ stroke-width:2.5; }
-.saturn-ring-back path{ opacity:.5; }
-.saturn-ring-front path{ opacity:.9; }
-.saturn-body{ fill: currentColor; }
-@keyframes saturnDrift{
-  0%,100%{ transform: translate(0,0) rotate(0deg); }
-  50%{ transform: translate(-14px,16px) rotate(5deg); }
-}
-@media (max-width: 700px){
-  .saturn{ width:80px; height:80px; top:8%; right:6%; }
 }
 
 #warpFlash{
@@ -276,7 +250,7 @@ main{ margin-left: var(--rail-w); position:relative; z-index:1; }
 .container{ max-width: var(--max-w); margin:0 auto; padding: 0 24px 90px; }
 section{ padding-top: 76px; scroll-margin-top: calc(var(--topbar-h) + 20px); }
 
-.reveal{ opacity:0; transform: translateY(22px); transition: opacity 700ms var(--ease-slow), transform 700ms var(--ease-slow); }
+.reveal{ opacity:0; transform: translateY(12px); transition: opacity 320ms ease-out, transform 320ms ease-out; }
 .reveal.in{ opacity:1; transform: translateY(0); }
 
 .eyebrow{

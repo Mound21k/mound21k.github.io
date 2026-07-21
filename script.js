@@ -35,7 +35,7 @@ var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
 })();
 
 // ==========================================================
-// starfield canvas (dark mode ambient background)
+// starfield canvas (ambient background, both themes)
 // ==========================================================
 (function(){
   var canvas = document.getElementById('starfield');
@@ -63,7 +63,10 @@ var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
   var t = 0;
   function draw(){
     ctx.clearRect(0, 0, w, h);
-    ctx.fillStyle = '#c9bdfa';
+    var light = document.documentElement.getAttribute('data-theme') === 'light';
+    ctx.fillStyle = light ? '#3f8fd6' : '#c9bdfa';
+    ctx.shadowColor = light ? 'rgba(255,255,255,.95)' : 'transparent';
+    ctx.shadowBlur = light ? 5 : 0;
     for (var i = 0; i < stars.length; i++){
       var s = stars[i];
       var tw = s.base + Math.sin(t * s.speed * 60 + s.phase) * 0.35;
@@ -73,6 +76,7 @@ var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
       ctx.fill();
     }
     ctx.globalAlpha = 1;
+    ctx.shadowBlur = 0;
     t += 1;
     if (!reduceMotion) requestAnimationFrame(draw);
   }
@@ -184,7 +188,7 @@ var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
         revealObserver.unobserve(entry.target);
       }
     });
-  }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+  }, { threshold: 0, rootMargin: '0px 0px 15% 0px' });
 
   targets.forEach(function(el){ revealObserver.observe(el); });
 })();
